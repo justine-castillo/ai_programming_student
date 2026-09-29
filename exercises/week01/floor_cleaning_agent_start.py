@@ -26,12 +26,13 @@ class FloorCleaningAgent:
         # TODO: interne state initialiseren
         # - huidige positie (rij, kolom)
         # - grid met proper/vuil status per tegel (bv. True = proper, False = vuil)
+        self.huidigepositie = (self.row, self.col)
 
         self.row = 0  # startrij (bovenaan)
         self.col = 0  # startkolom (links)
 
         # Voorbeeld: grid aanmaken (alle tegels beginnen vuil)
-        # self.grid = [[False for _ in range(cols)] for _ in range(rows)]
+        self.grid = [[False for _ in range(cols)] for _ in range(rows)]
 
     # ---------- Basisbewegingen ----------
 
@@ -46,25 +47,39 @@ class FloorCleaningAgent:
     def move_down(self):
         """Verplaats de robot één tegel omlaag (rij +1)."""
         # TODO: implementeer
-        pass
+        if self.row < 0:
+            self.row += 1
+            print(f"Verplaats naar ({self.row}, {self.col})")
+        else:
+            print("Kan niet omlaag: rand bereikt")
 
     def move_left(self):
         """Verplaats de robot één tegel naar links (kolom -1)."""
         # TODO: implementeer
-        pass
+        if self.col < 0:
+            self.col -= 1
+            print(f"Verplaats naar ({self.row}, {self.col})")
+        else:
+            print("Kan niet naar links: rand bereikt")
 
     def move_right(self):
         """Verplaats de robot één tegel naar rechts (kolom +1)."""
         # TODO: implementeer
-        pass
+        if self.col < 0:
+            self.col += 1
+            print(f"Verplaats naar ({self.row}, {self.col})")
+        else:
+            print("Kan niet naar rechts: rand bereikt")
 
     # ---------- Stofzuigen ----------
 
     def clean_tile(self):
         """Stofzuig de huidige tegel (maak hem proper)."""
         # TODO: markeer huidige tegel als proper
-        # print(f"Tegel ({self.row}, {self.col}) is nu proper!")
-        pass
+        #for i in range(len(self.rows)):
+            
+        print(f"Tegel ({self.row}, {self.col}) is nu proper!")
+        
 
     # ---------- Strategie ----------
 
