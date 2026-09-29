@@ -16,7 +16,22 @@ def insertion_sort(sequence):
         list: De gesorteerde lijst.
     """
     # TODO: implementeer insertion sort
-    pass
+    if len(sequence) == 0:
+        return sequence
+
+    if len(sequence) == 1:
+        return sequence
+    sortedlist = []
+    # neem eerste elem in sequence als eerste elem in de gesorteerde elem
+    sortedlist.append(sequence[0])
+    for i in range(1, len(sequence)):
+        key = sequence[i]
+        j = i - 1
+        while j >= 0 and sequence[j] > key:
+            sequence[j + 1] = sequence[j]
+            j -= 1
+            sequence[j + 1] = key
+            return sequence
 
 
 if __name__ == "__main__":
