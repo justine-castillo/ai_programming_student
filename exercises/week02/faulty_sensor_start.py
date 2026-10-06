@@ -12,6 +12,7 @@ De agent moet:
 4. Als de betrouwbare hoogtemeter daalt: een correctie aanvragen
    (actuator).
 """
+
 from typing import Optional
 
 
@@ -51,7 +52,7 @@ class FaultTolerantAgent:
     def read_all(self, p: Reading) -> tuple[float, float]:
         """Sensors: geef beide metingen terug."""
         # TODO
-        pass
+        return Reading()
 
     def reliable_value(self, a: float, b: float, previous: Optional[float]) -> float:
         """Sensor model: bepaal de meest betrouwbare hoogtemeting.
@@ -63,7 +64,8 @@ class FaultTolerantAgent:
         - Is er geen vorige waarde (eerste meetslag)? -> kies
           bij voorkeur sensor a.
         """
-        # TODO: implementeer dit 
+        # TODO: implementeer dit
+        return
 
     def process(self, p: Reading):
         # TODO: kies de betrouwbare meting, bepaal de trend (delta t.o.v.
@@ -76,13 +78,13 @@ class FaultTolerantAgent:
 if __name__ == "__main__":
     # Vluchtprofiel: klim, cruise, daal. Sensor A valt uit bij stap 4.
     vlucht = [
-        Reading(1000, 1000),   # beide ok
-        Reading(1020, 1025),   # beide ok, stijgende trend
-        Reading(1050, 1048),   # beide ok
-        Reading(1055, 600),    # sensor B stuk (of is het A?)
-        Reading(1040, 100),    # sensor B blijft onzin
-        Reading(1020, 50),     # daling wordt nu zichtbaar via A
-        Reading(1000, 30),     # dalende trend -> correctie nodig
+        Reading(1000, 1000),  # beide ok
+        Reading(1020, 1025),  # beide ok, stijgende trend
+        Reading(1050, 1048),  # beide ok
+        Reading(1055, 600),  # sensor B stuk (of is het A?)
+        Reading(1040, 100),  # sensor B blijft onzin
+        Reading(1020, 50),  # daling wordt nu zichtbaar via A
+        Reading(1000, 30),  # dalende trend -> correctie nodig
     ]
 
     agent = FaultTolerantAgent()

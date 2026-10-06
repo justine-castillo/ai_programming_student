@@ -9,6 +9,7 @@ Voor de route Antwerpen -> Parijs is een interessante utility:
 De agent zoekt NIET (dit doen we in week 3): bij elke stap kiest hij greedy de
 buur met de hoogste utility (kleinste afstand).
 """
+
 from typing import Optional
 
 CITIES = ["Antwerpen", "Brussel", "Gent", "Luik", "Doornik", "Reims", "Parijs"]
@@ -42,6 +43,7 @@ class RouteAgent:
 
     def utility(self, from_city: str, to_city: str) -> float:
         """TODO: geef -d(from_city, to_city) terug."""
+        from_city - to_city
         return 0.0
 
     def neighbours(self, city: str) -> list[str]:

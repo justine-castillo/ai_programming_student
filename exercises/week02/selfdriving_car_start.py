@@ -5,9 +5,15 @@ Implementeer een agent die zijn voorligger volgt.
 """
 
 
+# Statespace = ruimte waar je gegevens zich vrij in mogen begeven
 class LidarSensorInput:
     def __init__(self, distance=0.0):
         self.DistanceTo = distance
+
+
+class SelfDrivingCar:
+    def __init__(self):
+        self.vorige_afstand = None
 
 
 class Brake:
@@ -23,12 +29,23 @@ class Nothing:
 class SelfDrivingCar:
     def __init__(self):
         # TODO: interne state — welke variabele heb je nodig?
-        pass
+        # self.relatieve_snelheid = afstand
+        self.vorige_afstand = None
 
     def process(self, sensor_input):
-        # TODO: bereken relatieve snelheid en tijd tot botsing; 
+        # TODO: bereken relatieve snelheid en tijd tot botsing;
         #       rem als tijd < 5 seconden
+        afstand = sensor_input.DistanceTo
         action = Nothing()
+
+        if self.vorige_afstand is not None:
+            snelheid = self.vorige_afstand - afstand
+            if snelheid > 0:
+                tijd = afstand / snelheid
+                if tijd < 5:
+                    action = Brake()
+
+        self.vorige_afstand = afstand  # altijd updaten
         return action
 
 
